@@ -1,3 +1,21 @@
+# next-wink-app
+
+Tooling:
+- Next.js
+- Typescript
+- RxJS
+- PostCSS Utilities
+  - tailwindcss + `@apply` directive (utility classes, etc.)
+  - postcss-nested (nested CSS definitions, like SASS)
+  - postcss-simple-vars (SASS-like css variables)
+- PostCSS Optimizations
+  - purgecss (unused CSS purging)
+  - postcss-discard-comments (remove CSS comments for production)
+  - cssnano (stylesheet minification)
+------------------------------
+
+------------------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
