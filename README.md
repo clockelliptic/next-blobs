@@ -24,10 +24,6 @@ Tooling:
   - [cssnano](https://github.com/cssnano/cssnano) (stylesheet minification, incl. comment purging)
 ------------------------------
 
-------------------------------
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Usage:
 
 ### Utils
