@@ -1,17 +1,24 @@
-# next-wink-app
+# wink-dolly
+  ... as in [Dolly](https://dolly.roslin.ed.ac.uk/facts/the-life-of-dolly/index.html), the first animal ever cloned!
+
+
+## What is it? 
+
+wink-dolly is a blog boilerplate written with Next.js and Typescript.
+
 
 Tooling:
-- Next.js
-- Typescript
-- RxJS
-- PostCSS Utilities
-  - tailwindcss + `@apply` directive (utility classes, etc.)
-  - postcss-nested (nested CSS definitions, like SASS)
-  - postcss-simple-vars (SASS-like css variables)
-- PostCSS Optimizations
-  - purgecss (unused CSS purging)
-  - postcss-discard-comments (remove CSS comments for production)
-  - cssnano (stylesheet minification)
+- [Next.js](https://nextjs.org/docs)
+- [Typescript](https://www.typescriptlang.org/docs/)
+- [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)
+- [Axios](https://github.com/axios/axios) (and [rxios](https://github.com/davguij/rxios))
+- [PostCSS](https://postcss.org/) Utilities
+  - [tailwindcss](https://tailwindcss.com/docs) + `@apply` directive (utility classes, etc.)
+  - [postcss-nested](https://github.com/postcss/postcss-nested) (nested CSS definitions, like SASS)
+  - [postcss-simple-vars](https://github.com/postcss/postcss-simple-vars) (SASS-like css variables)
+- [PostCSS](https://postcss.org/) Optimizations
+  - [purgecss](https://github.com/FullHuman/purgecss) (unused CSS purging)
+  - [cssnano](https://github.com/cssnano/cssnano) (stylesheet minification, incl. comment purging)
 ------------------------------
 
 ------------------------------

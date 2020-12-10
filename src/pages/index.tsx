@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { GetServerSideProps } from 'next'
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {} // passed to component as props
+  }
+}
+
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
