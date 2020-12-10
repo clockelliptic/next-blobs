@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Navbar } from '../layout/navigation/Navbar';
-import { Config } from '../utils/Config';
+import { Config } from '@dolly/utils/Config';
 
 type IMainProps = {
   meta: ReactNode;
@@ -30,6 +30,11 @@ const Main = (props: IMainProps) => (
             <li className="mr-6">
               <Link href="/about/">
                 <a>About</a>
+              </Link>
+            </li>
+            <li className="mr-6">
+              <Link href="/posts/">
+                <a>Blog</a>
               </Link>
             </li>
             <li className="mr-6">

@@ -1,4 +1,4 @@
-const { getArticles } = require('../../../utils/integrations/contentful').public;
+const { getArticles } = require('@dolly/utils/integrations/contentful').public;
 
 export default async function handler(req, res) {
   /*

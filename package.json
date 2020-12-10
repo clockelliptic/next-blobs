@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^14.1.2",
     "@next/bundle-analyzer": "^10.0.3",
     "axios": "^0.21.0",
     "contentful": "^8.1.1",
@@ -21,6 +22,8 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "@dolly/components": "file:src\\components",
+    "@dolly/utils": "file:src\\utils",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",

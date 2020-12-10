@@ -1,8 +1,6 @@
-import React from 'react';
-
 import Link from 'next/link';
 
-import { convertUrlToLinkHref } from '../../../utils/pagination';
+import { convertUrlToLinkHref } from '@dolly/utils/pagination';
 
 export type IBlogPaginationProps = {
   previous?: string;

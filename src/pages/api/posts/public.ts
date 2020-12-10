@@ -1,7 +1,6 @@
-const { getArticles } = require('../../../utils/integrations/contentful').public;
+const { getArticles } = require('@dolly/utils/integrations/contentful').public;
 
 export default async function handler(req, res) {
-  console.log(req)
   const post = await getPost(req.query.slug)
   if (post) {
       let isGated = post.fields.membersOnly;

@@ -28,6 +28,94 @@ Tooling:
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Usage:
+
+### Utils
+
+The `src/utils` directory can be imported as a module like so:
+
+```
+import someUtility from '@dolly/utils/someUtility'
+import { Config } from '@dolly/utils/Config'
+import contentfulUtils from '@dolly/utils/contentfulUtils'
+```
+
+To explore what utilities are available check out `src/utils`.
+
+### Components
+
+Similar to utils, `src/components` is available as a module:
+
+```
+import someComponent from '@dolly/utils/someComponent'
+import Navbar from '@dolly/components/layout/navigation/Navbar'
+import Content from '@dolly/components/templates'
+```
+
+### Collection / Blog
+
+The Collection boilerplate is configured with `contentful.js`.
+
+The Collection boilerplate has two parts:
+1. The API functions located in `src/pages/api/posts`
+2. The frontend located in `src/pages/posts`
+
+Suppose we wanted to copy the blog boilerplate because we have a second collection called **news**. To do so, copy `src/pages/api/posts` to `src/pages/api/articles` and copy `src/pages/api/posts` to `src/pages/news`.
+
+Then go into each of `src/pages/new/[slug].tsx`, `src/pages/news/gallery/index.tsx`, and `src/pages/news/gallery/[page].tsx` and change
+
+```
+import { getPost } from '../api/posts/public';
+import { getPosts } from '../api/posts/index';
+```
+
+to 
+
+```
+import { getPost } from '../api/articles/public';
+import { getPosts } from '../api/articles/index';
+```
+respectively.
+
+Finally, in `src/pages/api/articles/`, each of `public.js`, `gated.js`, and `index.js` must be changed to use the correct contentful API utility functions.
+
+For example, in the original `posts` collection API, if we look at `src/pages/api/posts/public.ts` we'll see 
+
+```
+const { getArticles } = require('@dolly/utils/integrations/contentful').public;
+```
+
+In order to query contentful for the **news** collection, we need to go to `src/utils/integrations/contentful.ts` and create a new utility function `getNewsArticle`. Notice that dolly also comes packaged with a few more query utilities:
+
+```
+module.exports = {
+    public: contentfulUtilities(),
+    private: __contentfulUtilities(),
+}
+  
+...
+
+function contentfulUtilities() {
+  return {
+    getTeammates: getItems("teamMembers"),
+    getArticles: getItems("article"),
+    getReviews: getItems("reviews"),
+    getAdverts: getItems("adSpace"),
+  }
+}
+
+function __contentfulUtilities() {
+  return {
+    __getItems: getItems,
+    __getItem: getItem
+  }
+}
+
+...
+```
+
+You will also notice two factory functions, `getItems` and `getItem` which can be used to build new contentful query functions.
+
 ## Getting Started
 
 First, run the development server:

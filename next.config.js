@@ -5,6 +5,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const baseUrl = '';
 
 module.exports = withBundleAnalyzer({
+	async redirects() {
+		return [
+		  {
+			source: '/posts/',
+			destination: '/posts/gallery/',
+			permanent: true,
+		  },
+		]
+	},
 	poweredByHeader: false,
 	trailingSlash: true,
 	basePath: baseUrl,
