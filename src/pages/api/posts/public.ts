@@ -2,17 +2,17 @@ const { getArticles } = require('../../../utils/integrations/contentful').public
 
 export default async function handler(req, res) {
   console.log(req)
-  const article = await getArticles({'fields.slug': req.query.slug})
-  if (article[0]) {
-      let isGated = article[0].fields.membersOnly;
+  const post = await getPost(req.query.slug)
+  if (post) {
+      let isGated = post.fields.membersOnly;
       // hide gated content from public endpoint
       if (isGated) {
-          article[0].fields.content = null;
+          post.fields.content = null;
       }
       res.setHeader('Cache-Control', 'max-age=3600');
       res.send({
           status: 'ok',
-          data: article
+          data: post
       })
   } else {
       res.send({
@@ -20,4 +20,9 @@ export default async function handler(req, res) {
           reason: 'Invalid name: article could not be found.'
       })
   }
+}
+
+export async function getPost (slug:string): Promise<any> {
+	const post = (await getArticles({'fields.slug': slug}))[0]
+	return post;
 }

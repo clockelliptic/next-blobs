@@ -6,9 +6,12 @@
 
 wink-dolly is a blog boilerplate written with Next.js and Typescript.
 
+Out of the box it is setup to use an external CMS and comes configured with Contentful.js.
+
 
 Tooling:
 - [Next.js](https://nextjs.org/docs)
+- [Contentful](https://contentful.com)
 - [Typescript](https://www.typescriptlang.org/docs/)
 - [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)
 - [Axios](https://github.com/axios/axios) (and [rxios](https://github.com/davguij/rxios))
