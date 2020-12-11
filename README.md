@@ -265,11 +265,12 @@ module.exports = withBundleAnalyzer({
 
 If you just cloned the blog your data collection probably has a different shape than the one that is assumed here.
 
-To do this, change 
 
 ## Defining Typescript types for your blogs/collections
 
 Check out `contentful-typescript-codegen` [here](https://developer.aliyun.com/mirror/npm/package/contentful-typescript-codegen).
+
+Once you configure your environment files and run the `contentful-typescript-codegen` script, you'll find your newly generated Contentful Typescript type definitons in `src/types/contentful.js`. Note that this will completely overwrite the contentful type definitions.
 
 ## Additional Contentful collection shapes with built-in support:
 Team members:
