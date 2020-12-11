@@ -267,7 +267,11 @@ If you just cloned the blog your data collection probably has a different shape 
 
 To do this, change 
 
-## Additional Contentful collection shapes:
+## Defining Typescript types for your blogs/collections
+
+Check out `contentful-typescript-codegen` [here](https://developer.aliyun.com/mirror/npm/package/contentful-typescript-codegen).
+
+## Additional Contentful collection shapes with built-in support:
 Team members:
 ```
 {

@@ -5,7 +5,9 @@ const fullConfig = resolveConfig(tailwindConfig);
 const ORDERED_FORMATS = ["webp", "jpg"];
 const TARGET_SCALE_FACTOR = 0.8;
 
-module.exports = (src, alt, dimensions) => {
+type Dimensions = {width?: number, height?: number};
+
+module.exports = (src: string, alt: string, dimensions: Dimensions) => {
     let targetScreens = calcTargetScreens(dimensions)
     let widths = calcWidths(targetScreens)
 
@@ -39,8 +41,8 @@ function srcset(src, width, fmt) {
     return `${url}`;
 }
 
-function calcTargetScreens(dimensions) {
-    const screenSizesPx = Object.values(fullConfig.theme.screens).map(s =>
+function calcTargetScreens(dimensions: Dimensions) {
+    const screenSizesPx = Object.values(fullConfig.theme.screens).map((s: string) =>
         parseInt(s.substring(0, s.length - 2), 10)
     );
     return screenSizesPx.filter(s => s <= dimensions.width);

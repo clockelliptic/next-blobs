@@ -1,4 +1,4 @@
-module.exports = (videoId) => {
+module.exports = (videoId: string) => {
     return `
         <div
             style="

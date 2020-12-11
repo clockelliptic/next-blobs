@@ -61,6 +61,9 @@ async function runSubscribe(email, price) {
 }
 
 async function processWebhook(signature, body, db) {
+	/*
+		MongoDB for storing record of which users have active subscriptions
+	*/
 	const event = stripe.webhooks.constructEvent(
 		body,
 		signature,
@@ -88,6 +91,9 @@ async function processWebhook(signature, body, db) {
 }
 
 async function completeCheckoutSession(db, checkoutSession) {
+	/*
+		MongoDB for storing record of which users have active subscriptions
+	*/
 	const registrationReferenceId = checkoutSession.client_reference_id
 	if (!!registrationReferenceId) {
 		const doc = await db

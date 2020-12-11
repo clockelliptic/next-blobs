@@ -8,13 +8,15 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output src/types/contentful.ts"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^14.1.2",
     "@next/bundle-analyzer": "^10.0.3",
     "axios": "^0.21.0",
     "contentful": "^8.1.1",
+    "contentful-typescript-codegen": "^3.2.1",
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
     "isomorphic-fetch": "^3.0.0",
@@ -26,12 +28,15 @@
   "devDependencies": {
     "@dolly/components": "file:src\\components",
     "@dolly/utils": "file:src\\utils",
+    "@dolly/types:": "file:src\\types",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^10.0.4",
+    "contentful-management": "^7.5.0",
     "cssnano": "^4.1.10",
+    "dotenv": "^8.2.0",
     "mini-css-extract-plugin": "^1.3.2",
     "postcss": "^8.1.7",
     "postcss-cli": "^8.3.0",
