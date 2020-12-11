@@ -234,7 +234,9 @@ Suppose we wanted to copy the blog boilerplate because we have a second collecti
 
   You will also notice two factory functions, `getItems` and `getItem` which can be used to build new contentful query functions.
 
-### 5. Permanently redirect the new blog's root path to the blog gallery root in `next.config.js`:
+### 5. Update the API functions located in `src/pages/api/articles` to handle the shape of the new blog data.
+
+### 6. Permanently redirect the new blog's root path to the blog gallery root in `next.config.js`:
 
 ```
 module.exports = withBundleAnalyzer({
@@ -259,9 +261,11 @@ module.exports = withBundleAnalyzer({
 });
 ```
 
-### 6. Change the blog API functions to correctly handle the data from this new blog collection
+### 7. Change the blog API functions to correctly handle the data from this new blog collection
 
 If you just cloned the blog your data collection probably has a different shape than the one that is assumed here.
+
+To do this, change 
 
 ## Additional Contentful collection shapes:
 Team members:
@@ -702,7 +706,7 @@ Workshops:
   "sys": {
     
     ...
-    
+
   }
 }
 ```
