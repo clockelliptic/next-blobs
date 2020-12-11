@@ -28,6 +28,21 @@ Non-critical bonus utilities:
 
 ------------------------------
 
+## Environment configuration
+
+There are two environment files:
+
+1. `.env` (copy and rename `.env.sample`)
+2. `.env.local` (copy and rename `.env.local.sample`)
+
+`.env` contains environment variables that for local script that automate the creation of Contentful Typescript types.
+
+`.env.local` contains environment variables that your `next.js` application server uses.
+
+You need to read these environment variables and get Contentful keys (and keys for other integrations you may want to use, such as Auth0, Stripe, MongoDB, etc.)
+
+At a minimum you need Contentful keys unless you refactor the app to use another CMS / data source.
+
 ## Local modules:
 
 ### Utils
