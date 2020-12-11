@@ -2,6 +2,8 @@
   "name": "next-wink-app",
   "version": "0.1.0",
   "private": true,
+  "author": "Allen Hart <allen@madebywink.com> (https://github.com/clockelliptic)",
+  "license": "ISC",
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
