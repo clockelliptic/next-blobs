@@ -1,5 +1,5 @@
 {
     "name" : "@dolly/components",
     "version" : "0.0.1",
-    "main": "index.js"
+    "main": "index.ts"
 }

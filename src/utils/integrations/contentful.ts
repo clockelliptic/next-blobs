@@ -16,6 +16,7 @@ function contentfulUtilities() {
     getArticles: getItems("article"),
     getReviews: getItems("reviews"),
     getAdverts: getItems("adSpace"),
+    getWorkshops: getItems("workshops"),
   }
 }
 
