@@ -48,6 +48,14 @@ import Navbar from '@dolly/components/layout/navigation/Navbar'
 import Content from '@dolly/components/templates'
 ```
 
+### Types
+
+Note that these will change if you define your own Contentful Typescript types. See below for instructions.
+
+```
+import { IArticle, IAdSpace, ITeamMembers } from '@dolly/types/contentful`
+```
+
 ## Default Contentful configuration
 
 The default configuration assumes that you have a contentful blog collection with the following content model:
