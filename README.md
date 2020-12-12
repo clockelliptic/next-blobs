@@ -172,3 +172,10 @@ module.exports = withBundleAnalyzer({
 ```
 
 ### 7. Finally, configure and style the frontend pages for the new collection pages and indexes.
+
+## Configuring Auth0
+
+### HTTPS
+Auth0 doesnt play very nicely with devving on localhost because it requires HTTPS, and localhost doesn't (usually... not by default at least) have a valid SSL certificate.
+
+In order to work around this, it's recommended to use Ngrok or some similar service, or to come up with some other way to dev on a domain with SSL certs.
