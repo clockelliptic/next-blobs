@@ -23,7 +23,9 @@ const Index = ({ post }) => {
 		return await response.json();
 	};
 
-	const { data, error } = useSWR(endpoint, getData)
+	const { data, error } = useSWR(endpoint, getData);
+
+	const validData = (d) => d && d.data && d.data.fields && d.data.fields.content;
 
 	const InnerContent = ({content}) => (
 		<div 
@@ -47,17 +49,14 @@ const Index = ({ post }) => {
 			>
 				<h2>view console logs to see post object</h2>
 				<h2>Post excerpt:</h2><p>{d.excerpt}</p>
-				{	d.membersOnly
-						? data
-								? (
-									<InnerContent content={data.data.fields.content} />
-								)
-								: (
-									<Gated />
-								)
-						: (
-							<InnerContent content={d.content} />
-						)
+				{	
+					d.membersOnly
+						? (!data)
+							? <p>Loading...</p>
+							: validData(data)
+								? <InnerContent content={data.data.fields.content} />
+								: <Gated />
+						: <InnerContent content={d.content} />
 				}
 			</Content>
 			<style jsx>{`
