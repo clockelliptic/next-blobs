@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next';
 
-import { BlogGallery, IBlogGalleryProps } from '@dolly/components/templates/blog/BlogGallery';
+import { BlogGallery, IBlogGalleryProps } from '@dolly/components/blog/BlogGallery';
 import { Meta } from '@dolly/components/layout/Meta';
-import { IBlogPaginationProps } from '@dolly/components/templates/blog/pagination/Pagination';
-import { Main } from '@dolly/components/templates/Main';
+import { IBlogPaginationProps } from '@dolly/components/blog/pagination/Pagination';
+import { Main } from '@dolly/components/layout/Layout';
 import { PostsConfig } from '@dolly/utils/Config';
 import { getPosts } from '../../api/posts/index';
 
@@ -11,16 +11,16 @@ const perPage = Number(PostsConfig.pagination_size);
 
 const Index = (props: IBlogGalleryProps) => {
   return (
-    <Main
+    <BlogGallery 
+      posts={props.posts} 
+      pagination={props.pagination} 
       meta={(
         <Meta
           title={PostsConfig.title}
           description={PostsConfig.description}
         />
       )}
-    >
-      <BlogGallery posts={props.posts} pagination={props.pagination} />
-    </Main>
+    />
   )
 }
 export default Index;

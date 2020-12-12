@@ -11,17 +11,12 @@ const Header = () => {
         <ul>
           <li>
             <Link href='/'>
-              <a>Home</a>
+              <a>Home (client-rendered)</a>
             </Link>
           </li>
           <li>
-            <Link href='/billing-info'>
-              <a>Billing Info</a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/about'>
-              <a>About</a>
+            <Link href='/posts'>
+              <a>Posts</a>
             </Link>
           </li>
           {!loading && (
@@ -29,7 +24,7 @@ const Header = () => {
               <>
                 <li>
                   {/* You can use <Link /> here too */}
-                  <a href='/profile'>Profile</a>
+                  <a href='/profile'>Profile (SSR)</a>
                 </li>
                 <li>
                   <a href='/api/logout'>Logout</a>

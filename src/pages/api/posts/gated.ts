@@ -1,15 +1,35 @@
+const { getArticles } = require('@dolly/utils/integrations/contentful').public;
+
 export default async function handler(req, res) {
-  /*
-  const res = await fetch(`https://...`)
-  const data = await res.json()
-
-  if (!data) {
-    return {
-      notFound: true,
-    }
+  const post = await getPost(req.query.slug)
+  console.log("REQ QUERY", req.query, post)
+  if (post && post.fields.membersOnly) {
+      res.setHeader('Cache-Control', 'max-age=3600');
+      res.send({
+          status: 'ok',
+          data: post
+      })
+  } else if (post) {
+    res.send({
+        status: 'ok',
+        reason: 'This is not a gated article, front-end already has the data!'
+    })
+  } else {
+      res.send({
+          status: 'fail',
+          reason: 'Invalid name: article could not be found.'
+      })
   }
-  */
+}
 
-  // Rest of the API logic
-  res.json({ message: 'Hello Everyone - gated!' })
+export async function getPost (slug:string): Promise<any> {
+	const post = (await getArticles({'fields.slug': slug}))[0]
+	if (post) {
+		let isGated = post.fields.membersOnly;
+		// hide gated content from public endpoint
+		//if (isGated) post.fields.content = null;
+		return post
+	} else {
+		return false;
+	}
 }

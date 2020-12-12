@@ -2,11 +2,13 @@ import React, { ReactNode } from 'react';
 
 type IContentProps = {
   children: ReactNode;
+  meta?: ReactNode;
 };
 
-const Content = (props: IContentProps) => (
+const Gated = (props: IContentProps) => (
   <div className="content">
-    {props.children}
+    <h1>This is a gated article. The content has been redacted.... unless you're logged in!</h1>
+    <p>Try making an account and logging in to see this content.</p>
 
     <style jsx>
       {`
@@ -27,4 +29,4 @@ const Content = (props: IContentProps) => (
   </div>
 );
 
-export { Content };
+export { Gated };

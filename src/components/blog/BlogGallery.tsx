@@ -8,6 +8,7 @@ import { Pagination, IBlogPaginationProps } from './pagination/Pagination';
 export type IBlogGalleryProps = {
 	posts: PostItems[];
   pagination: IBlogPaginationProps;
+  meta: ReactNode;
 };
 
 export type PostItems = {
@@ -15,8 +16,8 @@ export type PostItems = {
 };
 
 const BlogGallery = (props: IBlogGalleryProps) => {
-	console.log("blogGallery", props)
 	return (<>
+    {props.meta}
     <ul>
       {props.posts.map((post) => (
         <li key={post.fields.slug} className="mb-3 flex justify-between">

@@ -25,7 +25,8 @@
     "jsonp": "^0.2.1",
     "next": "10.0.3",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "swr": "^0.3.9"
   },
   "devDependencies": {
     "@dolly/components": "file:src\\components",

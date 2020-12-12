@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { useFetchUser } from '@dolly/utils/integrations/auth/user';
-import Layout from '@dolly/components/layout/Layout';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
@@ -11,8 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function Home(props) {
   const { user, loading } = useFetchUser();
-  return (
-    <Layout user={user} loading={loading}>
+  return (<>
       <h1>Next.js and Auth0 Example</h1>
 
       {loading && (
@@ -38,6 +36,6 @@ export default function Home(props) {
           <pre>{JSON.stringify(user, null, 2)}</pre>
         </>
       )}
-    </Layout>
+    </>
   )
 }

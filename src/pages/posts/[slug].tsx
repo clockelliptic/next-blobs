@@ -1,36 +1,64 @@
+import useSWR from 'swr'
+import { useState } from 'react'
+
 import { GetStaticProps } from 'next';
 
 import { Meta } from '@dolly/components/layout/Meta';
-import { Main } from '@dolly/components/templates/Main';
-import { Content } from '@dolly/components/templates/Content';
+import { Content } from '@dolly/components/blog/BlogContent';
+import { Gated } from '@dolly/components/blog/Gated';
 import { getPost } from '../api/posts/public';
 import { getPosts } from '../api/posts/index';
 
-import { contentRenderOptions } from "@dolly/utils/integrations/contentfulUtils";
+import { contentRenderOptions } from "@dolly/utils/integrations/contentfulUtils/richTextRenderer";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 const Index = ({ post }) => {
 	const d = post.fields;
-	console.log("POST OBJECT:", post)
+	const gated = d.membersOnly;
+
+	const endpoint = `/api/posts/gated?slug=${d.slug}`;
+
+	const getData = async () => {
+		const response = await fetch(endpoint);
+		return await response.json();
+	};
+
+	const { data, error } = useSWR(endpoint, getData)
+
+	const InnerContent = ({content}) => (
+		<div 
+			className="content" 
+			dangerouslySetInnerHTML={{
+				__html: documentToHtmlString(content, contentRenderOptions)
+			}}
+		>
+		</div>
+	);
+
   return (
-    <Main
-      meta={(
-        <Meta
-          title={d.title}
-          description={d.excerpt}
-        />
-      )}
-    >
-			<Content>
+		<>
+			<Content
+				meta={(
+					<Meta
+						title={d.title}
+						description={d.excerpt}
+					/>
+				)}
+			>
 				<h2>view console logs to see post object</h2>
 				<h2>Post excerpt:</h2><p>{d.excerpt}</p>
-				<div 
-					className="content" 
-					dangerouslySetInnerHTML={{
-						__html: documentToHtmlString(post.fields.content, contentRenderOptions)
-					}}
-				>
-				</div>
+				{	d.membersOnly
+						? data
+								? (
+									<InnerContent content={data.data.fields.content} />
+								)
+								: (
+									<Gated />
+								)
+						: (
+							<InnerContent content={d.content} />
+						)
+				}
 			</Content>
 			<style jsx>{`
 				  .content {
@@ -124,7 +152,7 @@ const Index = ({ post }) => {
 						left: 50%;
 					}
 			`}</style>
-    </Main>
+		</>
   )
 }
 export default Index;
@@ -142,7 +170,6 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const post = await getPost(context.params.slug)
-  console.log("CONTEXT", context.params.slug)
   return {
     props: {
       post
