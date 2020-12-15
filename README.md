@@ -4,13 +4,11 @@
 
 ## What is it? 
 
-wink-dolly is a blog boilerplate written with Next.js and Typescript.
-
-Out of the box it is setup to use an external CMS and comes configured with Contentful.js.
-
+wink-dolly is a blog boilerplate written and configured with...
 
 Essential Tooling:
 - [Next.js](https://nextjs.org/docs)
+- [Apollo GraphQL](https://www.apollographql.com/)
 - [Contentful](https://contentful.com)
 - [Typescript](https://www.typescriptlang.org/docs/)
 - [PostCSS](https://postcss.org/) Utilities
@@ -18,6 +16,7 @@ Essential Tooling:
 - [PostCSS](https://postcss.org/) Optimizations
   - [purgecss](https://github.com/FullHuman/purgecss) (unused CSS purging)
   - [cssnano](https://github.com/cssnano/cssnano) (stylesheet minification, incl. comment purging)
+- [SWR](https://github.com/vercel/swr)
 
 Non-critical bonus utilities:
 - [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)

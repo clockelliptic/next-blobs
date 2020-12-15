@@ -1,5 +1,18 @@
 const { getArticles } = require('@dolly/utils/integrations/contentful').public;
 
+type IQueryParams = {
+  skip: bigint,
+  limit: bigint
+}
+
+export async function getPosts (queryParams: IQueryParams): Promise<Array<any>> {
+  const posts = await getArticles(queryParams)
+  // hide content from previews for all articles
+  posts.forEach(article => article.fields.content = null)
+
+  return posts;
+}
+
 export default async function handler(req, res) {
   /*
       Paginated.
@@ -17,17 +30,4 @@ export default async function handler(req, res) {
       status: 'ok',
       data: articles
   })
-}
-
-export async function getPosts (queryParams: QueryParams): Promise<Array<any>> {
-  const posts = await getArticles(queryParams)
-  // hide content from previews for all articles
-  posts.forEach(article => article.fields.content = null)
-
-  return posts;
-}
-
-type QueryParams = {
-  skip: bigint,
-  limit: bigint
 }

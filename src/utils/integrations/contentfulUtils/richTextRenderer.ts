@@ -4,53 +4,38 @@ const renderVideo = require("./_videoRenderer");
 const renderAudio = require("./_audioRenderer");
 const renderHyperlink = require("./_hyperlinkRenderer");
 
-module.exports = { contentRenderOptions }
+export { contentRenderOptions }
 
 var contentRenderOptions = {
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
-      const type = node.data.target.fields.file.contentType
-      /*
-                Render images
-            */
-      if (type.search("image") !== -1) {
-        const src = node.data.target.fields.file.url,
-          alt = node.data.target.fields.description,
-          dimensions = node.data.target.fields.file.details.image
+      const df = node.data.target.fields,
+            type = df.file.contentType;
 
+      if (type.search("image") !== -1) {
+        const src = df.file.url,
+              alt = df.description,
+              dimensions = df.file.details.image;
         return renderImage(src, alt, dimensions, node)
       }
 
-      /*
-                Render images
-            */
       if (type.search("video") !== -1) {
-        const src = node.data.target.fields.file.url
-        return renderAudio(src)
-      }
-    },
-    [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-      /*
-                Render video
-            */
-      const type = node.data.target.sys.contentType.sys.id
-      if (type.search("videos") !== -1) {
-        const link = node.data.target.fields.link
-        const isShareLink = link.includes("youtu.be/")
-        const videoId = isShareLink
-          ? link.split("youtu.be/")[1]
-          : link.split("?v=")[1].split("&")[0]
-        return renderVideo(videoId)
+        return renderAudio(df.file.url)
       }
     },
     [INLINES.HYPERLINK]: (node, children) => {
-      /*
-                Render hyperlinks
-                 - specifically to ensure data is prefetched
-            */
+      const uri = node.data.uri;
+      const isShareLink = uri.includes("youtu.be/");
+      const isEmbedLink = uri.includes("youtube.com/watch");
+      
+      if(isEmbedLink || isShareLink) {
+        const videoId = isShareLink 
+                          ? uri.split("youtu.be/")[1] 
+                          : uri.split("?v=")[1].split("&")[0];
+        return renderVideo(videoId)
+      }
 
-      let uri = node.data.uri
-      let text = node.content[0].value
+      let text = node.content[0].value;
       return renderHyperlink(uri, text)
     },
   },

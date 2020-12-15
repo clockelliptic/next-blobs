@@ -12,20 +12,24 @@
     "contentful-typescript-codegen": "contentful-typescript-codegen --output src/types/contentful.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@apollo/react-hooks": "^4.0.0",
     "@auth0/nextjs-auth0": "^0.16.0",
     "@contentful/rich-text-html-renderer": "^14.1.2",
     "@next/bundle-analyzer": "^10.0.3",
+    "apollo-boost": "^0.4.9",
+    "apollo-link-ws": "^1.0.20",
     "axios": "^0.21.0",
     "contentful": "^8.1.1",
     "contentful-typescript-codegen": "^3.2.1",
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
-    "isomorphic-fetch": "^3.0.0",
-    "isomorphic-unfetch": "^3.1.0",
+    "graphql": "^15.4.0",
     "jsonp": "^0.2.1",
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "subscriptions-transport-ws": "^0.9.18",
     "swr": "^0.3.9"
   },
   "devDependencies": {
@@ -51,7 +55,6 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^6.0.1",
     "rxjs": "^6.6.3",
-    "styled-components": "^5.2.1",
     "tailwind.macro": "^0.5.10",
     "tailwindcss": "^2.0.1",
     "typescript": "^4.1.2"

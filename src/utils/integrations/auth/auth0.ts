@@ -10,7 +10,7 @@ export default initAuth0({
   postLogoutRedirectUri: config.POST_LOGOUT_REDIRECT_URI,
   session: {
     cookieSecret: config.SESSION_COOKIE_SECRET,
-    cookieLifetime: config.SESSION_COOKIE_LIFETIME,
+    cookieLifetime: Number(config.SESSION_COOKIE_LIFETIME),
     storeIdToken: true,
     storeRefreshToken: true,
     storeAccessToken: true
