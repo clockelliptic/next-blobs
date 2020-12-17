@@ -15,15 +15,9 @@ const Layout = ({ user, loading = false, children }) => (
     <Header />
 
     <main>
-      <div className="container">{children}</div>
+      <div>{children}</div>
     </main>
 
-    <style jsx>{`
-      .container {
-        max-width: 42rem;
-        margin: 1.5rem auto;
-      }
-    `}</style>
     <style jsx global>{`
       body {
         margin: 0;

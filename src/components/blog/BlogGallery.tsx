@@ -20,7 +20,7 @@ const BlogGallery = (props: IBlogGalleryProps) => {
     {props.meta}
     <ul>
       {props.posts.map((post) => (
-        <li key={post.fields.slug} className="mb-3 flex justify-between">
+        <li key={`${post.fields.slug}-${Math.floor(Math.random()*10000)}`} className="mb-3 flex justify-between">
           <Link href="/posts/[slug]" as={`/posts/${post.fields.slug}`}>
             <a>
               <h2>{post.fields.title}</h2>

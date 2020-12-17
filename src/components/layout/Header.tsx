@@ -6,12 +6,13 @@ const Header = () => {
   const { user, loading } = useUser();
 
   return (
-    <header>
+    <header id="global-header">
       <nav>
+        <h1>:-)</h1>
         <ul>
           <li>
             <Link href='/'>
-              <a>Home (client-rendered)</a>
+              <a>Home</a>
             </Link>
           </li>
           <li>
@@ -33,9 +34,6 @@ const Header = () => {
             ) : (
               <>
                 <li>
-                  <a href='/api/register'>Register</a>
-                </li>
-                <li>
                   <a href='/api/login'>Login</a>
                 </li>
               </>
@@ -47,11 +45,21 @@ const Header = () => {
       <style jsx>{`
         header {
           padding: 0.2rem;
-          color: #fff;
-          background-color: #333;
+          color: #333;
+          background-color: rgba(255,255,255,0.5);
+          z-index: 100;
+          position: relative;
+        }
+        h1 {
+          font-size: 2rem;
+          color: #333;
+          margin: 0;
+          line-height: 2rem;
         }
         nav {
-          max-width: 42rem;
+          display: flex;
+          align-items: center;
+          padding: 0 32px;
           margin: 1.5rem auto;
         }
         ul {
@@ -59,20 +67,20 @@ const Header = () => {
           list-style: none;
           margin-left: 0;
           padding-left: 0;
+          align-items: center;
+          justify-content: flex-end;
+          flex: 1;
         }
         li {
-          margin-right: 1rem;
-        }
-        li:nth-child(2) {
-          margin-right: auto;
+          margin-left: 2rem;
         }
         a {
-          color: #fff;
+          color: #333;
           text-decoration: none;
         }
         button {
           font-size: 1rem;
-          color: #fff;
+          color: #333;
           cursor: pointer;
           border: none;
           background: none;
