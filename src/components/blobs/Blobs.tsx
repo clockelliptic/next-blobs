@@ -5,53 +5,54 @@ import * as d3 from 'd3'
 
 export default function Blobs () {
     let sceneKey = 1;
-    const blobs = defaultBlobs;
-    const showGas = false;
 
-    const [topMarginAdjust, setTopMarginAdjust] = useState(0)
+    const [kill, setKill] = useState(false);
 
     /* Canvas setup */
     let canvas = createRef(), 
         canvasWidth = makeVar(null), 
         canvasHeight = makeVar(null);
 
-    let onResize = () => {};
+    const onResize = (window) => () => {
+        try {
+            canvasWidth(window.innerWidth)
+            canvasHeight(canvas.current.clientHeight || canvas.current.offsetHeight);
+            let m = { type: 'resize', canvasWidth: canvasWidth(), canvasHeight: canvasHeight() };
+            throttle(() => worker.postMessage(m), 100)
+        } catch (err) {
+            console.log("ERROR ON RESIZE HANDLER: ", err)
+        }
+    }
 
     /* engine configuration */
-    const numBlobs = 4,
+    const blobs = defaultBlobs,
           segmentRadius = 12,
-          gasParticleRadius = 20;
+          gasParticleRadius = 28,
+          showGas = false;
 
-    let	temperature = 6,
-        numGasParticles = 14;
+    let	temperature = 10,
+        numGasParticles = 20;
     
     /* data */
-    const data = { current: {
-        particles: [],
-        gas: [],
-        links: []
-    } }
+    const data = { 
+        current: {
+            particles: [],
+            gas: [],
+            links: [],
+            exploded: false,
+            exploded_once: false
+        } 
+    }
 
     let worker;
 
     useEffect(() => {
-        setTopMarginAdjust(-1 * Number(document.getElementById('global-header').clientHeight))
-        const svgCanvas = d3.select(`svg#canvas-${sceneKey}`)
-                            .attr('width', canvasWidth())
-                            .attr('height', canvasHeight());
         /*
             SET INITIAL SCENE SIZE & RESIZE HANDLER
         */
         canvasWidth(window.innerWidth)
         canvasHeight(canvas.current.clientHeight || canvas.current.offsetHeight);
-        window.addEventListener('resize', onResize);
-
-        onResize = () => {
-            canvasWidth(window.innerWidth)
-            canvasHeight(canvas.current.clientHeight || canvas.current.offsetHeight);
-            let m = { type: 'resize', canvasWidth: canvasWidth(), canvasHeight: canvasHeight() };
-            throttle(() => worker.postMessage(m), 100)
-        }
+        window.addEventListener('resize', onResize(window));
 
         /*
             INITIALIZE WORKER THREAD
@@ -61,6 +62,7 @@ export default function Blobs () {
            switch (event.data.type) {
                case "init": return onWorkerInitialized(event.data.data);
                case "tick": return ticked(event.data.data);
+               case "explode": return ticked(event.data.data, { explode: true });
                case "end": return;
            }
        };
@@ -68,6 +70,19 @@ export default function Blobs () {
             START THE DAMN THING
         */
         initBlobEngine();
+
+        /*
+            END CONDITIONS
+        */
+       setTimeout(() => {
+            setKill(true)
+            setTimeout(() => {
+                worker.postMessage({ type: 'end' })
+            }, 2500)
+            setTimeout(() => {
+                worker.terminate()
+            }, 3500)
+        }, 10250)
 
         /*
             CLEANUP
@@ -86,9 +101,13 @@ export default function Blobs () {
     /*
         COPIES DATA FROM WORKER THREAD TO LOCAL DATA STORE
     */
-    function ticked (newParticles) {
+    function ticked (newParticles, opts = { explode: false}) {
         data.current.particles = newParticles.blobs;
-        data.current.links = newParticles.links;
+        data.current.links = newParticles.links; 
+        if (opts.explode) { 
+            data.current.exploded = true;
+            console.log("client explode")
+        }
         if (showGas) data.current.gas = newParticles.gas;
     }
 
@@ -164,7 +183,7 @@ export default function Blobs () {
             .merge(
                 particle.enter().append('circle')
                     .classed('particle', true)
-                    .attr('r', d=> d.r)
+                    .attr('r', d=> data.current.exploded_once ? d.r*2 : d.r)
                     .attr('fill', d => d.color)
             )
             .attr('cx', d => d.x)
@@ -174,17 +193,28 @@ export default function Blobs () {
     function linkDigest(blobs, links, index) {
         let link = d3.select(`svg#canvas-${sceneKey} g#g${index}`).selectAll('line.link').data(links);
         link.exit().remove()
-        link.merge(
-            link.enter()
-                .append('line')
-                .classed('link', true)
-                .attr('stroke', d => d.color)
-                .attr('stroke-width', d => 2*segmentRadius)
-        )
-        .attr('x1', (d) => extractCoord(blobs, d, 'x'))
-        .attr('y1', (d) => extractCoord(blobs, d, 'y'))
-        .attr('x2', (d) => extractCoord(blobs, d, 'x'))
-        .attr('y2', (d) => extractCoord(blobs, d, 'y'))
+            
+        if (data.current.exploded) {
+            worker.postMessage({
+                type: 'exploded', 
+                canvasWidth: canvasWidth(), 
+                canvasHeight: canvasHeight()
+            })
+            data.current.exploded_once = true;
+            data.current.links = []
+        } else {
+            link.merge(
+                link.enter()
+                    .append('line')
+                    .classed('link', true)
+                    .attr('stroke', d => d.color)
+                    .attr('stroke-width', d => 2*segmentRadius)
+            )
+            .attr('x1', (d) => extractCoord(blobs, d, 'x'))
+            .attr('y1', (d) => extractCoord(blobs, d, 'y'))
+            .attr('x2', (d) => extractCoord(blobs, d, 'x'))
+            .attr('y2', (d) => extractCoord(blobs, d, 'y'))
+        } 
     }
 
     function extractCoord (blobs, d, coord) {
@@ -237,10 +267,13 @@ export default function Blobs () {
             .canvas {
                 width: 100%;
                 min-height: 100vh;
-                margin-top: ${ topMarginAdjust }px;
+                transition: opacity 750ms ease-out;
+            }
+            .invis {
+                opacity: 0;
             }
         `}</style>
-        <svg id={`canvas-${sceneKey}`} ref={canvas} className="canvas">
+        <svg id={`canvas-${sceneKey}`} ref={canvas} className={`canvas${kill ? ' invis' : ''}`}>
             <defs>
                 <filter id="gooey">
                     <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
@@ -249,7 +282,7 @@ export default function Blobs () {
                 </filter>
             </defs>
             {
-                d3.range(numBlobs).map((x) => <g id={`g${x}`} key={`blobgroup-${x}`} className="gooey"></g>)
+                d3.range(blobs.length).map((x) => <g id={`g${x}`} key={`blobgroup-${x}`} className="gooey"></g>)
             }
         </svg>
     </>)

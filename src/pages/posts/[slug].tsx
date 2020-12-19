@@ -29,10 +29,10 @@ export const getStaticProps = async (context) => {
   const initialApolloState = await getPost(context.params.slug)
   return {
     props: {
-			...initialApolloState,
-			slug: context.params.slug
-		},
-		revalidate: 1
+		...initialApolloState,
+		slug: context.params.slug
+	},
+	revalidate: 1
   };
 };
 
@@ -46,8 +46,9 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
 												.articleCollection.items[0];
 
 	const [content, setContent] = useState(extract_content(c)),
-				title = extract_title(c),
-				excerpt = extract_excerpt(c);
+		  title = extract_title(c),
+		  excerpt = extract_excerpt(c),
+		  author = extract_author(c);
 
 	/*
 		query the /posts/gated api and let the server validate the user and send data
@@ -68,12 +69,15 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
   return (
 		<>
 			<Content meta={( <Meta title={title} description={excerpt} /> )}>
-				<h2>{ title }</h2>
-				{	
-					content
-						? <InnerContent content={content} />
-						: <Gated />
-				}
+				<div className="container">
+					<h2>{ title }</h2>
+					<p>by { author }</p>
+					{	
+						content
+							? <InnerContent content={content} />
+							: <Gated />
+					}
+				</div>
 			</Content>
 			<style jsx>{`
 				  .content {
@@ -175,6 +179,7 @@ async function requestGatedData (url: string, setState) {
 		const response = await fetch(url);
 		const d = await response.json()
 		if (d.content) setState(extract_content(d.content));
+		console.log("GATED DATA", d)
 		return d
 };
 
@@ -190,6 +195,10 @@ function validData (d) {
 
 function extract_title (d) {
 	return d && d.title 
+}
+
+function extract_author (d) {
+	return d && d.author
 }
 
 function extract_excerpt (d) {

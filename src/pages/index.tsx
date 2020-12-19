@@ -1,16 +1,47 @@
-import { GetServerSideProps } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import { useFetchUser } from '@dolly/utils/integrations/auth/user';
 import Blobs from '@dolly/components/blobs/Blobs'
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps = (context) => {
   return {
-    props: {} // passed to component as props
+    props: {
+
+    } // passed to component as props
   }
 }
 
-export default function Home(props) {
+export default function Home({props}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { user, loading } = useFetchUser();
+
   return (<>
+    <section className="hero colorbar-left" style={{ borderColor:'#FFFFFF' }}>
+      <div className="hero-animation">
+        <Blobs />
+      </div>
+      <div className="hero-content">
+        <div className="container">
+          <h1>Welcome.</h1>
+        </div>
+      </div>
+    </section>
+
+    <section className="flex-section colorbar-right" style={{ borderColor:'#FF84B7' }}>
+
+    </section>
+    <section className="flex-section colorbar-right" style={{ borderColor:'#00C8CB' }}>
+
+    </section>
+    <section className="flex-section colorbar-right" style={{ borderColor:'#FFC627' }}>
+
+    </section>
+    <section className="flex-section colorbar-right" style={{ borderColor:'#D44220' }}>
+
+    </section>
+    <section className="flex-section colorbar-right" style={{ borderColor:'#286EEB' }}>
+
+    </section>
+
+
     <style jsx>{`
         .hero {
           position: relative;
@@ -38,22 +69,22 @@ export default function Home(props) {
           font-size: 5rem;
           color: #333;
         }
+        section {
+          height: 100vh;
+          width: 100%;
+        }
+        .colorbar-right {
+          width: calc(100% - 24px);
+          height: 100vh;
+          border-right: 24px solid;
+        }
+        .flex-section {
+          display: flex;
+          @apply bg-black;
+        }
+        @screen lg {
+
+        }
     `}</style>
-      <style jsx>{`
-      .container {
-        max-width: 42rem;
-        margin: 1.5rem auto;
-      }
-    `}</style>
-    <section className="hero">
-      <div className="hero-animation">
-        <Blobs />
-      </div>
-      <div className="hero-content">
-        <div className="container">
-          <h1>:-)</h1>
-        </div>
-      </div>
-    </section>
   </>)
 }

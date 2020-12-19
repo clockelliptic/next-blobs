@@ -17,7 +17,10 @@ function initForceSim ({blobs, temperature, segmentRadius,
 
     _canvasWidth = canvasWidth;
     _canvasHeight = canvasHeight;
-    const {particles, links} = data.current;
+
+    const { particles, links } = data.current;
+
+
     forceSim = d3.forceSimulation(particles)
         .alphaDecay(0)
         .velocityDecay(0)
@@ -43,6 +46,17 @@ function initForceSim ({blobs, temperature, segmentRadius,
             .radius(d => d.r)
         )
         .on('tick', ticked('tick'));
+
+        d3.timeout(function() {
+            forceSim.stop()
+            data.current.links = [];
+
+            console.log("RESTARTING")
+            ticked('explode')()
+            
+            forceSim.force("link").links([]);
+            forceSim.alpha(1).restart();
+        }, 6000);
         
         ticked('init')();
 }
@@ -67,6 +81,7 @@ self.onmessage = function(event) {
     switch (event.data.type) {
         case "init": return initForceSim(event.data);
         case "resize": return updateForceSim(event.data);
+        case "exploded": return console.log("worker explode");
         case "end": return forceSim.stop();
     }
 };

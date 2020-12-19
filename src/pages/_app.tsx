@@ -9,13 +9,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { user, loading } = useFetchUser();
   const apolloClient = useApollo(pageProps.initialApolloState);
 
-  return (
+  return (<>
+    <style jsx global>{`
+      .container {
+        max-width: 42rem;
+        margin: 1.5rem auto;
+      }
+    `}</style>
     <ApolloProvider client={apolloClient}>
       <Layout user={user} loading={loading}>
         <Component {...pageProps} />
       </Layout>
     </ApolloProvider>
-  )
+  </>)
 }
 
 export default MyApp
