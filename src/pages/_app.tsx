@@ -11,6 +11,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (<>
     <style jsx global>{`
+      * {
+        box-sizing: border-box;
+      }
       .container {
         max-width: 42rem;
         margin: 1.5rem auto;

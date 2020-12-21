@@ -30,7 +30,7 @@ export default function Menu () {
             </svg>
         </button>
 
-        <nav title="Wink navigation menu" id="navMenu" className={`amh-navMenu${open?' open melt-enter-active':''}`}>
+        <nav id="navMenu" className={`amh-navMenu${open?' open melt-enter-active':''}`}>
             <div className="color-bars">
                 <div style={{ height: `100vh`, width: 'calc(24px * 6.5)', background: '#286EEB' }}>
                     <div className="bar" style={{ height: `100vh`, width: 'calc(24px * 5)', background: '#D44220' }}>
@@ -97,6 +97,7 @@ export default function Menu () {
                 z-index: 50;
             }
             .color-bars .bar {
+                box-sizing: content-box;
                 -webkit-box-shadow: 5px 0px 15px 3px rgba(0,0,0,0.23); 
                 box-shadow: 5px 0px 15px 3px rgba(0,0,0,0.23);
                 transition: padding 500ms ease-out;
