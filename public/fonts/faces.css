@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'BwModelica SS02 Hairline';
+    src: local('BwModelica SS02 Hairline'), local('BwModelicaSS02-Hairline'),
+         url('fonts/BwModelicaSS02-Hairline.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwModelica';
+    src: local('BwModelica Regular Italic'), local('BwModelica-RegularItalic'),
+        url('BwModelica-RegularItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Black'), local('BwModelicaSS02-Black'),
+         url('fonts/BwModelicaSS02-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 ExtraBold'), local('BwModelicaSS02-ExtraBold'),
+         url('fonts/BwModelicaSS02-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwModelica';
+    src: local('BwModelica Regular'), local('BwModelica-Regular'),
+        url('BwModelica-Regular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Bold'), local('BwModelicaSS02-Bold'),
+         url('fonts/BwModelicaSS02-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02 Hairline';
+    src: local('BwModelica SS02 Hairline Italic'), local('BwModelicaSS02-HairlineItalic'),
+         url('fonts/BwModelicaSS02-HairlineItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 ExtraBold Italic'), local('BwModelicaSS02-ExtraBoldItalic'),
+         url('fonts/BwModelicaSS02-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Black Italic'), local('BwModelicaSS02-BlackItalic'),
+         url('fonts/BwModelicaSS02-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Light Italic'), local('BwModelicaSS02-LightItalic'),
+         url('fonts/BwModelicaSS02-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Bold Italic'), local('BwModelicaSS02-BoldItalic'),
+         url('fonts/BwModelicaSS02-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BwModelica SS02';
+    src: local('BwModelica SS02 Light'), local('BwModelicaSS02-Light'),
+         url('fonts/BwModelicaSS02-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
