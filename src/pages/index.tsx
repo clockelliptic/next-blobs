@@ -26,7 +26,7 @@ export default function Home({props}: InferGetStaticPropsType<typeof getStaticPr
 
   const sections = [
     {
-      title: "What is Wink?",
+      title: "What is Clockelliptic?",
       text: "In an increasingly digital landscape, innovating visual and emotive methods of connecting consumers to your brand is critical to your success. We create comprehensive solutions that utilize custom brand & web designs, sophisticated business technologies, and optimized marketing strategies to offer a growth blueprint that drives results and actually works— for you. ",
       img1: "/wink-office.jpg",
       img2: "/looking-at-code.jpg",
@@ -48,7 +48,7 @@ export default function Home({props}: InferGetStaticPropsType<typeof getStaticPr
     },
     {
       title: "Photography",
-      text: `From commercial photography to team portraits, the Wink Studio team will make sure your photoshoot goes off without a hitch. You bring the glamor –we'll provide the "it factor" that makes your brand irresistible on social media, your website, or even your company newsletters.`,
+      text: `From commercial photography to team portraits, the Clockelliptic Studio team will make sure your photoshoot goes off without a hitch. You bring the glamor –we'll provide the "it factor" that makes your brand irresistible on social media, your website, or even your company newsletters.`,
       img1: "/chocolate.jpg",
       img2: "/computer-and-phone.png",
       color: "#D44220"
@@ -82,9 +82,21 @@ export default function Home({props}: InferGetStaticPropsType<typeof getStaticPr
         <div className="hero-content">
           <div className="container">
             <div className="wink-computer">
-              <Image src={`/wink1.svg`} alt={''} width={140} height={140} />
-              <div style={{ width: '200px', height: '140px'}} />
-              <Image src={`/wink2.svg`} alt={''} width={140} height={140} />
+              <div style={{
+                height: '132',
+                marginBottom: '-128px',
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                fontSize: '4rem', fontFamily: 'BwModelica', color: 'white', fontWeight: '900',
+              }}>
+              </div>
+              <div style={{ width: '0px', height: '140px'}} />
+              <div style={{
+                height: '132',
+                marginBottom: '-128px',
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                fontSize: '4rem', fontFamily: 'BwModelica', color: 'white', fontWeight: '900',
+              }}>
+              </div>
             </div>
           </div>
         </div>

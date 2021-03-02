@@ -12,7 +12,16 @@ const Header = () => {
       <div className="inner" style={{background: '#fff'}}>
       </div>
       <div className="logo">
-        <Image src="/logo.svg" alt="Wink Digital" width={128} height={128} />
+        <div style={{
+          height: '74px', width: '74px', 
+          margin: '32px', 
+          background: '#286eebff',
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          fontSize: '3.5rem', fontFamily: 'BwModelica', color: 'white', fontWeight: '700',
+          overflow: 'hidden'
+        }}>
+          C
+        </div>
       </div>
       <Menu buttonColor="#3B8EF3" buttonColorOpen="#D8FBF2"/>
 

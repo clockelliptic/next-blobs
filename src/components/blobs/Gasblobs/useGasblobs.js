@@ -99,15 +99,7 @@ export default function useGasblobs () {
 
     }, [])
 
-
-
-
-
     return [ blobs, canvas, sceneKey, kill ];
-
-
-
-
 
     /*
         COPIES DATA FROM WORKER THREAD TO LOCAL DATA STORE

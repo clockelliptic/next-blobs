@@ -53,7 +53,7 @@ const BlogGallery = (props: IBlogGalleryProps) => {
     {props.meta}
     <div className="x-wide">
       <div className="flex flex-col">
-        <h1 className="page-title">What Wink Thinks</h1>
+        <h1 className="page-title">Clockellipic Blog</h1>
         {
           posts.map((post, i) => (
               <article key={`post-${i}`} ref={articleRefs[i]} className={`post-${i} flex-section ${i%2===0 ? ' reverse' : ''}`}>

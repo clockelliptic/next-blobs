@@ -23,7 +23,7 @@ export default function Footer () {
 
                     <div className="footer-links email">
                         <h2>Inquiries</h2>
-                        <a className="footer-link" href="mailto:hello@madebywink.com">hello@madebywink.com</a>
+                        <a className="footer-link" href="mailto:hello@clockelliptic.com">hello@clockelliptic.com</a>
                     </div>
                     <div className="footer-links social-media">
                         <h2>Connect With Us</h2>
@@ -36,8 +36,8 @@ export default function Footer () {
                     </div>
                 </nav>
                 <div className="brand-description">
-                    <h1>Wink<br />Digital</h1>
-                    <p>Founded in 2015, Wink Digital is a creative marketing agency that designs, engineers, and developes evocative brand identities and custom solutions for digital and print marketing media. Our team is based in Portland, OR and other states across the USA.</p>
+                    <h1>Clockelliptic</h1>
+                    <p>Founded in 2015, Clockelliptic is a creative marketing agency that designs, engineers, and developes evocative brand identities and custom solutions for digital and print marketing media. Our team is based in Pittsburgh, PA.</p>
                 </div>
             </div>
             <style jsx>{`

@@ -31,8 +31,8 @@ export default function PulseHeading() {
                     <text y="210">you.</text>
 
                     <text y="70">We are</text>
-                    <text y="140">Wink Digital</text>
-                    <text y="210">;)</text>
+                    <text y="140">Clock</text>
+                    <text y="210">Elliptic</text>
                 </clipPath>
             
                 <g id="background" clip-path="url(#textClip)">
