@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { useState } from 'react'
 import { useApollo } from '@dolly/utils/apolloClient'
 
-import { Meta } from '@dolly/components/layout/Meta';
+import { Meta } from '@dolly/components/layouts/Meta';
 import { Content } from '@dolly/components/blog/BlogContent';
 import { Gated } from '@dolly/components/blog/Gated';
 
@@ -29,10 +29,10 @@ export const getStaticProps = async (context) => {
   const initialApolloState = await getPost(context.params.slug)
   return {
     props: {
-			...initialApolloState,
-			slug: context.params.slug
-		},
-		revalidate: 1
+		...initialApolloState,
+		slug: context.params.slug
+	},
+	revalidate: 1
   };
 };
 
@@ -46,8 +46,9 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
 												.articleCollection.items[0];
 
 	const [content, setContent] = useState(extract_content(c)),
-				title = extract_title(c),
-				excerpt = extract_excerpt(c);
+		  title = extract_title(c),
+		  excerpt = extract_excerpt(c),
+		  author = extract_author(c);
 
 	/*
 		query the /posts/gated api and let the server validate the user and send data
@@ -68,49 +69,52 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
   return (
 		<>
 			<Content meta={( <Meta title={title} description={excerpt} /> )}>
-				<h2>{ title }</h2>
-				{	
-					content
-						? <InnerContent content={content} />
-						: <Gated />
-				}
+				<div className="container">
+					<h2>{ title }</h2>
+					<p>by { author }</p>
+					{	
+						content
+							? <InnerContent content={content} />
+							: <Gated />
+					}
+				</div>
 			</Content>
 			<style jsx>{`
 				  .content {
-						@apply text-secondary;
+						@apply text-secondary-typecolor;
 					}
 					.content h1 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1.85em;
 						font-weight: 500;
 					}
 					.content h2 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1.65em;
 						font-weight: 500;
 					}
 					.content h3 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1.4em;
 						font-weight: 500;
 					}
 					.content h4 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1.25em;
 						font-weight: 500;
 					}
 					.content h5 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1.125em;
 						font-weight: 500;
 					}
 					.content h6 {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1em;
 						font-weight: 600;
 					}
 					.content a {
-						@apply text-primary;
+						@apply text-primary-typecolor;
 						font-size: 1em;
 						font-weight: 400;
 					}
@@ -146,15 +150,16 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
 							my-4;
 					}
 					.content .blogImageContainer {
-						@apply w-full
-										relative
-										rounded-brand-mobile
-										overflow-hidden;
+						@apply 
+						w-full
+						relative
+						rounded-xl
+						overflow-hidden;
 						padding-top: 52.25%;
 					}
 					@screen md {
 						.content .blogImageContainer {
-							@apply rounded-brand;
+							@apply rounded-xl;
 						}
 					}
 					.content .blogImage {
@@ -175,6 +180,7 @@ async function requestGatedData (url: string, setState) {
 		const response = await fetch(url);
 		const d = await response.json()
 		if (d.content) setState(extract_content(d.content));
+		console.log("GATED DATA", d)
 		return d
 };
 
@@ -190,6 +196,10 @@ function validData (d) {
 
 function extract_title (d) {
 	return d && d.title 
+}
+
+function extract_author (d) {
+	return d && d.author
 }
 
 function extract_excerpt (d) {

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '@dolly/components/blog/BlogGallery';
-import { Meta } from '@dolly/components/layout/Meta';
+import { Meta } from '@dolly/components/layouts/Meta';
 import { IBlogPaginationProps } from '@dolly/components/blog/pagination/Pagination';
 import { Main } from '@dolly/components/templates/Main';
 import { PostsConfig } from '@dolly/utils/Config';

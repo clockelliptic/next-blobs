@@ -22,9 +22,7 @@ export function POST_QUERY (slug) {
 					content {
 						json
 					}
-					author {
-						name
-					}
+					author
 					membersOnly
 					excerpt
 				} 
@@ -53,9 +51,7 @@ export function GATED_POST_QUERY (slug) {
 						width
 						height
 					}
-					author {
-						name
-					}
+					author
 					membersOnly
 					excerpt
 				} 

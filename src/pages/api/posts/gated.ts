@@ -40,6 +40,7 @@ export async function getPost (slug:string, validSession: boolean): Promise<any>
 export default async function handler(req, res) {
   const session = await auth0.getSession(req);
   const isValidSession = (session && session.user) ? true : false
+  console.log(session)
   const apolloState = await getPost(req.query.slug, isValidSession)
   if (apolloState) {
       res.setHeader('Cache-Control', 'max-age=3600');

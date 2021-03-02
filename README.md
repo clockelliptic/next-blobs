@@ -1,4 +1,6 @@
-# wink-dolly (WIP)
+# next-blobs (WIP)
+
+Cloned from `wink-dolly`
   ... as in [Dolly](https://dolly.roslin.ed.ac.uk/facts/the-life-of-dolly/index.html), the first animal ever cloned!
 
 
@@ -19,8 +21,6 @@ Essential Tooling:
 - [SWR](https://github.com/vercel/swr)
 
 Non-critical bonus utilities:
-- [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)
-- [Axios](https://github.com/axios/axios) (and [rxios](https://github.com/davguij/rxios))
 - [PostCSS](https://postcss.org/) Utilities
   - [postcss-nested](https://github.com/postcss/postcss-nested) (nested CSS definitions, like SASS)
   - [postcss-simple-vars](https://github.com/postcss/postcss-simple-vars) (SASS-like css variables)
@@ -34,7 +34,7 @@ There are two environment files:
 1. `.env` (copy and rename `.env.sample`)
 2. `.env.local` (copy and rename `.env.local.sample`)
 
-`.env` contains environment variables for a local script that uses the COntentful management API to automatically create Contentful Typescript types. These types are meant to help development with better type hints and better error catching.
+`.env` contains environment variables for a local script that uses the COntentful management API to automatically create Contentful Typescript types.
 
 `.env.local` contains environment variables that your `next.js` application server uses. These are used on the front-end, should only contain public keys, and should **not** contain any management keys.
 

@@ -1,15 +1,15 @@
 import { GetStaticProps } from 'next';
 
 import { BlogGallery, IBlogGalleryProps } from '@dolly/components/blog/BlogGallery';
-import { Meta } from '@dolly/components/layout/Meta';
+import { Meta } from '@dolly/components/layouts/Meta';
 import { IBlogPaginationProps } from '@dolly/components/blog/pagination/Pagination';
-import { Main } from '@dolly/components/layout/Layout';
 import { PostsConfig } from '@dolly/utils/Config';
 import { getPosts } from '../../api/posts/index';
 
 const perPage = Number(PostsConfig.pagination_size);
 
 const Index = (props: IBlogGalleryProps) => {
+  
   return (
     <BlogGallery 
       posts={props.posts} 
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async (params) 
 
   return {
     props: {
-      posts: posts.slice(0,-1), // remember to remove the extra post
+      posts: (posts.length > perPage) ? posts.slice(0,-1) : posts, // remember to remove the extra post
       pagination,
     }
   };
