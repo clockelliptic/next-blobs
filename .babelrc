@@ -5,7 +5,20 @@
         {
           "styled-jsx": {
             "plugins": [
-              "styled-jsx-plugin-postcss"
+              [
+                "styled-jsx/babel",
+                {
+                  "plugins": [
+                    [
+                      "styled-jsx-plugin-postcss",
+                      {
+                        "path": "./postcss.config.js",
+                        "compileEnv": "worker"
+                      }
+                    ]
+                  ]
+                }
+              ]
             ]
           }
         }

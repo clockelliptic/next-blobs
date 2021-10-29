@@ -2,11 +2,9 @@ import '../styles/globals.css';
 import type { AppProps /*, AppContext */ } from 'next/app'
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "../utils/apolloClient";
-import { useFetchUser } from '../utils/integrations/auth/user';
 import Layout from '../components/layout/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { user, loading } = useFetchUser();
   const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (<>
@@ -20,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     `}</style> */}
     <ApolloProvider client={apolloClient}>
-      <Layout user={user} loading={loading}>
+      <Layout>
         <Component {...pageProps} />
       </Layout>
     </ApolloProvider>

@@ -273,7 +273,12 @@ export default function Blobs () {
                 opacity: 0;
             }
         `}</style> */}
-        <svg id={`canvas-${sceneKey}`} ref={canvas} className={`canvas${kill ? ' invis' : ''}`}>
+        <svg id={`canvas-${sceneKey}`} ref={canvas} className={`canvas`} style={{
+            width: '100%',
+            minHeight: '100vh',
+            transition: 'opacity 750ms ease-out',
+            opacity: kill ? 0 : 1
+        }}>
             <defs>
                 <filter id="gooey">
                     <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
@@ -282,7 +287,7 @@ export default function Blobs () {
                 </filter>
             </defs>
             {
-                d3.range(blobs.length).map((x) => <g id={`g${x}`} key={`blobgroup-${x}`} className="gooey"></g>)
+                d3.range(blobs.length).map((x) => <g id={`g${x}`} style={{filter: 'url("#gooey")'}} key={`blobgroup-${x}`} className="gooey"></g>)
             }
         </svg>
     </>)

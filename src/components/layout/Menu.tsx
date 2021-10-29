@@ -1,15 +1,11 @@
 import Link from 'next/link';
 import { useState } from 'react'
-import { useUser } from '../../utils/integrations/auth/user';
-import Header from './Header'
-
 
 export default function Menu () {
     const [open, setOpen] = useState(false)
     function toggleMenu () {
         setOpen(!open)
     }
-    const { user, loading } = useUser();
 
     return (<>
         <button title="Open the navigation menu" id="menuButton" onClick={toggleMenu} className={`amh-menuButton${open?' open':''}`}>
@@ -56,31 +52,6 @@ export default function Menu () {
                         <a>Posts</a>
                     </Link>  
                 </li>
-            {!loading && (
-                user ? (
-                <>
-                    <li onClick={toggleMenu}>
-                        <Link href='/profile'>
-                            <a>Profile (SSR)</a>
-                        </Link>
-                    </li>
-                    
-                    <li onClick={toggleMenu}>
-                        <Link href='/api/logout'>
-                            <a>Logout</a>
-                        </Link>
-                    </li>
-                </>
-                ) : (
-                <>
-                    <li onClick={toggleMenu}>
-                        <Link href={`/api/login?from=${window.location.pathname}`}>
-                            <a>Login</a>
-                        </Link>
-                    </li>
-                </>
-                )
-            )}
             </ul>
         </nav>
 

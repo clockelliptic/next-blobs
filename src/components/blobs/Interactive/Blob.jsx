@@ -13,8 +13,8 @@ export default function Blob ({}) {
                 height: 100%;
             }
         `}</style> */}
-        <div className="canvas-container">
-            <canvas id="interactive-blob-canvas" />
+        <div className="canvas-container" style={{width: '100%', minHeight: '100vh'}}>
+            <canvas id="interactive-blob-canvas" style={{width: '100%', height: '100%'}}/>
         </div>
     </>)
 }

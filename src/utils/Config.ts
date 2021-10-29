@@ -1,5 +1,5 @@
 export const Config = {
-    site_name: 'Next Wink Blog',
+    site_name: 'Next Blog',
     description: 'First there was dolly the sheep.',
     url: 'https://allenmichaelhart.com',
     locale: 'en',

@@ -4,7 +4,7 @@ import { BlogGallery, IBlogGalleryProps } from '../../../components/blog/BlogGal
 import { Meta } from '../../../components/layout/Meta';
 import { IBlogPaginationProps } from '../../../components/blog/pagination/Pagination';
 import { PostsConfig } from '../../../utils/Config';
-import { getPosts } from '../../api/posts/index';
+// import { getPosts } from '../../api/posts/index';
 
 const perPage = Number(PostsConfig.pagination_size);
 
@@ -29,19 +29,19 @@ export const getServerSideProps: GetServerSideProps = async (params) => {
         zeroIndexPage = page - 1,
         nextPage = page+1;
 
-  const posts = await getPosts({
+  /*const posts = await getPosts({
     skip: BigInt(zeroIndexPage*perPage),
     limit: BigInt(perPage+1) // request an extra post to see if we need another pagination page
   })
-  
+  */
   const pagination: IBlogPaginationProps = {};
 
   if (page > 1) pagination.previous = `/posts/gallery/${page - 1}`;
-  if (posts.length > perPage) pagination.next = `/posts/gallery/${nextPage}`;
+  // if (posts.length > perPage) pagination.next = `/posts/gallery/${nextPage}`;
 
   return {
     props: {
-      posts: posts.slice(0,-1), // remember to remove the extra post
+      posts: [], // posts.slice(0,-1), // remember to remove the extra post
       pagination,
     }
   };

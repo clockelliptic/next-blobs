@@ -1,13 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
-
-import { useUser } from '../../utils/integrations/auth/user';
 
 import Menu from './Menu'
 
 const Header = () => {
-  const { user, loading } = useUser();
-
   return (
     <header id="global-header">
       <div className="inner">

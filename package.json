@@ -14,7 +14,6 @@
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "@apollo/react-hooks": "^4.0.0",
-    "@auth0/nextjs-auth0": "^0.16.0",
     "@contentful/rich-text-html-renderer": "^14.1.2",
     "@next/bundle-analyzer": "^10.0.3",
     "@types/tailwindcss": "^2.2.2",

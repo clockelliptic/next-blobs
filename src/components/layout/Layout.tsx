@@ -1,29 +1,19 @@
 import Header from './Header';
 import { Meta } from './Meta'
 import { Config } from '../../utils/Config'
-import { UserProvider } from '../../utils/integrations/auth/user';
 
-const Layout = ({ user, loading = false, children }) => {
+const UserProvider = (props: any) => <>{props.children}</>
+
+const Layout = ({ children }) => {
   return (
-    <UserProvider value={{ user, loading }}>
+    <UserProvider>
       <Meta
           title={Config.site_name}
           description={Config.description}
       />
-      
-      <Header />
-
-      <main>
+      <main style={{minWidth: '100%', minHeight: '100vh'}}>
         <div>{children}</div>
       </main>
-
-      <div className="parallax-bars">
-        <div className="bar" style={{ height: `200vh`, background: '#FF84B7' }}></div>
-        <div className="bar" style={{ height: `300vh`, background: '#00C8CB' }}></div>
-        <div className="bar" style={{ height: `400vh`, background: '#FFC627' }}></div>
-        <div className="bar" style={{ height: `500vh`, background: '#D44220' }}></div>
-        <div className="bar" style={{ height: `600vh`, background: '#286EEB' }}></div>
-      </div>
 
       {null /* <style jsx global>{`
         body {
