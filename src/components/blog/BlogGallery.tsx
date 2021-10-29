@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { format } from 'date-fns';
 import Link from 'next/link';
@@ -17,7 +17,8 @@ export type PostItems = {
 
 const BlogGallery = (props: IBlogGalleryProps) => {
 	return (<>
-    <style jsx>{`
+  
+    {null /* <style jsx>{`
       .container.x-wide {
         max-width: 60rem;
       }
@@ -36,12 +37,8 @@ const BlogGallery = (props: IBlogGalleryProps) => {
         margin-left: 1rem;
         text-decoration: none;
       }
-      .link-title {
-      }
-      .link-excerpt {
-
-      }
-    `}</style>
+    `}</style> */}
+    
     {props.meta}
     <div className="container x-wide">
       <div className="flex flex-col">

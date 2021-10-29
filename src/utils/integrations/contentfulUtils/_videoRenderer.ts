@@ -1,4 +1,4 @@
-module.exports = (videoId: string) => {
+export const videoRenderer = (videoId: string) => {
     return `
         <div
             style="
@@ -23,4 +23,4 @@ module.exports = (videoId: string) => {
             </iframe>
         </div>
     `
-}
+};

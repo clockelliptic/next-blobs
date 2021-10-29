@@ -1,17 +1,17 @@
 import useSWR from 'swr'
 
 import { useState } from 'react'
-import { useApollo } from '@dolly/utils/apolloClient'
+import { useApollo } from '../../utils/apolloClient'
 
-import { Meta } from '@dolly/components/layout/Meta';
-import { Content } from '@dolly/components/blog/BlogContent';
-import { Gated } from '@dolly/components/blog/Gated';
+import { Meta } from '../../components/layout/Meta';
+import { Content } from '../../components/blog/BlogContent';
+import { Gated } from '../../components/blog/Gated';
 
 import { POST_QUERY, GATED_POST_QUERY } from '../api/posts/_queries';
 import { getPost } from '../api/posts/public';
 import { getPosts } from '../api/posts/index';
 
-import { contentRenderOptions } from "@dolly/utils/integrations/contentfulUtils/richTextRenderer";
+import { contentRenderOptions } from "../../utils/integrations/contentfulUtils/richTextRenderer";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 export async function getStaticPaths() {
@@ -79,7 +79,7 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
 					}
 				</div>
 			</Content>
-			<style jsx>{`
+			{null /* <style jsx>{`
 				  .content {
 						@apply text-secondary;
 					}
@@ -170,7 +170,7 @@ export default function Index ({ slug, gated, initialApolloState, hasContent }) 
 						top: 50%;
 						left: 50%;
 					}
-			`}</style>
+			`}</style> */}
 		</>
   )
 }

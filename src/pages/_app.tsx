@@ -1,16 +1,16 @@
 import '../styles/globals.css';
 import type { AppProps /*, AppContext */ } from 'next/app'
 import { ApolloProvider } from "@apollo/client";
-import { useApollo } from "@dolly/utils/apolloClient";
-import { useFetchUser } from '@dolly/utils/integrations/auth/user';
-import Layout from '@dolly/components/layout/Layout';
+import { useApollo } from "../utils/apolloClient";
+import { useFetchUser } from '../utils/integrations/auth/user';
+import Layout from '../components/layout/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { user, loading } = useFetchUser();
   const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (<>
-    <style jsx global>{`
+    {null /* <style jsx global>{`
       * {
         box-sizing: border-box;
       }
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         max-width: 42rem;
         margin: 1.5rem auto;
       }
-    `}</style>
+    `}</style> */}
     <ApolloProvider client={apolloClient}>
       <Layout user={user} loading={loading}>
         <Component {...pageProps} />

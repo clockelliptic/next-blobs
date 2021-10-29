@@ -1,13 +1,14 @@
-const resolveConfig = require("tailwindcss/resolveConfig")
-const tailwindConfig = require("../../../../tailwind.config");
+import resolveConfig from "tailwindcss/resolveConfig";
+import { TailwindConfig } from "tailwindcss/tailwind-config";
+import tailwindConfig from "../../../../tailwind.config";
 
-const fullConfig = resolveConfig(tailwindConfig);
+const fullConfig = resolveConfig((tailwindConfig as unknown as TailwindConfig));
 const ORDERED_FORMATS = ["webp", "jpg"];
 const TARGET_SCALE_FACTOR = 0.8;
 
 type Dimensions = {width?: number, height?: number};
 
-module.exports = (src: string, alt: string, dimensions: Dimensions) => {
+export const imageRenderer = (src: string, alt: string, dimensions: Dimensions) => {
     let targetScreens = calcTargetScreens(dimensions)
     let widths = calcWidths(targetScreens)
 

@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import { convertUrlToLinkHref } from '@dolly/utils/pagination';
-
 export type IBlogPaginationProps = {
   previous?: string;
   next?: string;

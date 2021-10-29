@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from 'next'
-import { useFetchUser } from '@dolly/utils/integrations/auth/user';
-import Blobs from '@dolly/components/blobs/Blobs'
-import Blob from '@dolly/components/blobs/Interactive/Blob'
+import { useFetchUser } from '../utils/integrations/auth/user';
+import Blobs from '../components/blobs/Blobs'
+import Blob from '../components/blobs/Interactive/Blob'
 import Image from "next/image"  
 import { useLayoutEffect, useState } from 'react'
 
@@ -99,7 +99,7 @@ export default function Home({props}: InferGetStaticPropsType<typeof getStaticPr
     </section>
 
 
-    <style jsx>{`
+    {null /* <style jsx>{`
         .wink-computer {
           display: flex;
         }
@@ -169,6 +169,6 @@ export default function Home({props}: InferGetStaticPropsType<typeof getStaticPr
           width: 100%;
           height: 100%;
         }
-    `}</style>
+    `}</style> */}
   </>)
 }

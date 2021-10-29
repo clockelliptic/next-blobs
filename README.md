@@ -47,9 +47,9 @@ At a minimum you need Contentful keys unless you refactor the app to use another
 The `src/utils` directory can be imported as a module like so:
 
 ```
-import someUtility from '@dolly/utils/someUtility'
-import { Config } from '@dolly/utils/Config'
-import contentfulUtils from '@dolly/utils/contentfulUtils'
+import someUtility from '../utils/someUtility'
+import { Config } from '../utils/Config'
+import contentfulUtils from '../utils/contentfulUtils'
 ```
 
 To explore what utilities are available check out `src/utils`.
@@ -59,9 +59,9 @@ To explore what utilities are available check out `src/utils`.
 Similar to utils, `src/components` is available as a module:
 
 ```
-import someComponent from '@dolly/components/someComponent'
-import Navbar from '@dolly/components/layout/navigation/Navbar'
-import Content from '@dolly/components/templates'
+import someComponent from '../components/someComponent'
+import Navbar from '../components/layout/navigation/Navbar'
+import Content from '../components/templates'
 ```
 
 ### Types
@@ -69,12 +69,12 @@ import Content from '@dolly/components/templates'
 Note that these will change if you define your own Contentful Typescript types. See below for instructions.
 
 ```
-import { IArticle, IAdSpace, ITeamMembers } from `@dolly/types/contentful`
+import { IArticle, IAdSpace, ITeamMembers } from `../types/contentful`
 ```
 
 ## Default Contentful Typescript types
 
-The default configuration comes with some default Typscript types for a Contentful data model. These can be imported with `@dolly/types/contentful` and are found in `src/utils/contentful.ts`.
+The default configuration comes with some default Typscript types for a Contentful data model. These can be imported with `../types/contentful` and are found in `src/utils/contentful.ts`.
 
 ## Defining Typescript types for your own blogs/collections
 
@@ -109,7 +109,7 @@ To do this, as an example of how to configure `dolly` for your website/app:
   For example, in the original `posts` collection API, if we look at `src/pages/api/posts/public.ts` we'll see 
 
   ```
-  const { getArticles } = require('@dolly/utils/integrations/contentful').public;
+  const { getArticles } = require('../utils/integrations/contentful').public;
   ```
 
   In order to query contentful for the **news** collection, we need to go to `src/utils/integrations/contentful.ts` and create a new utility function `getNewsArticle`. Notice that dolly also comes packaged with a few more query utilities:

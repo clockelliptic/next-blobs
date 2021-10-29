@@ -10,7 +10,7 @@ const Content = (props: IContentProps) => (
     {props.meta}
     {props.children}
 
-    <style jsx>
+    {null /* <style jsx>
       {`
         .content :global(p) {
           @apply my-6;
@@ -25,7 +25,7 @@ const Content = (props: IContentProps) => (
           @apply text-xl font-semibold text-gray-700 my-4;
         }
       `}
-    </style>
+      </style> */}
   </div>
 );
 

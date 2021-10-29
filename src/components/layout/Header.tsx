@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useUser } from '@dolly/utils/integrations/auth/user';
+import { useUser } from '../../utils/integrations/auth/user';
 
 import Menu from './Menu'
 
@@ -17,7 +17,7 @@ const Header = () => {
       </div>
       <Menu />
 
-      <style jsx>{`
+      {null /* <style jsx>{`
         header {
           padding: 0.2rem;
           color: #333;
@@ -46,7 +46,8 @@ const Header = () => {
           margin-left: 120px;
           z-index: 50;
         }
-      `}</style>
+      `}</style> */}
+
     </header>
   )
 }

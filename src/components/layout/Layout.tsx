@@ -1,14 +1,9 @@
-import Head from 'next/head';
-
-import Header from './header';
+import Header from './Header';
 import { Meta } from './Meta'
-import { Config } from '@dolly/utils/Config'
-import { UserProvider } from '@dolly/utils/integrations/auth/user';
-import useTopMarginAdjust from './useTopMarginAdjust';
-
+import { Config } from '../../utils/Config'
+import { UserProvider } from '../../utils/integrations/auth/user';
 
 const Layout = ({ user, loading = false, children }) => {
-  const topMarginAdjust = useTopMarginAdjust()
   return (
     <UserProvider value={{ user, loading }}>
       <Meta
@@ -30,7 +25,7 @@ const Layout = ({ user, loading = false, children }) => {
         <div className="bar" style={{ height: `600vh`, background: '#286EEB' }}></div>
       </div>
 
-      <style jsx global>{`
+      {null /* <style jsx global>{`
         body {
           margin: 0;
           color: #333;
@@ -56,7 +51,8 @@ const Layout = ({ user, loading = false, children }) => {
           -webkit-box-shadow: 0px 10px 42px -18px rgba(0,0,0,0.75);
           -moz-box-shadow: 0px 10px 42px -18px rgba(0,0,0,0.75);
         }
-      `}</style>
+      `}</style> */}
+ 
     </UserProvider>
   );
 }

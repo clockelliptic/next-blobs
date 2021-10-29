@@ -1,8 +1,8 @@
-const { BLOCKS, INLINES } = require("@contentful/rich-text-types");
-const renderImage = require("./_imageRenderer");
-const renderVideo = require("./_videoRenderer");
-const renderAudio = require("./_audioRenderer");
-const renderHyperlink = require("./_hyperlinkRenderer");
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { imageRenderer as renderImage } from "./_imageRenderer";
+import { videoRenderer as renderVideo } from "./_videoRenderer";
+import { audioRenderer as renderAudio } from "./_audioRenderer";
+import { hyperlinkrenderer as renderHyperlink } from "./_hyperlinkRenderer";
 
 export { contentRenderOptions }
 
@@ -16,7 +16,7 @@ var contentRenderOptions = {
         const src = df.file.url,
               alt = df.description,
               dimensions = df.file.details.image;
-        return renderImage(src, alt, dimensions, node)
+        return renderImage(src, alt, dimensions)
       }
 
       if (type.search("video") !== -1) {

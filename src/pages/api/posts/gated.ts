@@ -1,5 +1,5 @@
-import auth0 from '@dolly/utils/integrations/auth/auth0'
-import { initializeApollo } from "@dolly/utils/apolloClient"
+import auth0 from '../../../utils/integrations/auth/auth0'
+import { initializeApollo } from "../../../utils/apolloClient"
 import { POST_QUERY, GATED_POST_QUERY } from './_queries'
 
 export async function getPost (slug:string, validSession: boolean): Promise<any> {

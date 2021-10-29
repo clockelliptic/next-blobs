@@ -1,4 +1,4 @@
-import { useEffect, createRef, useState } from 'react'
+import { useEffect, createRef, useState, LegacyRef } from 'react'
 import { makeVar } from '@apollo/client';
 import defaultBlobs from './defaultBlobs'
 import * as d3 from 'd3'
@@ -9,14 +9,14 @@ export default function Blobs () {
     const [kill, setKill] = useState(false);
 
     /* Canvas setup */
-    let canvas = createRef(), 
+    let canvas = createRef<SVGSVGElement>(), 
         canvasWidth = makeVar(null), 
         canvasHeight = makeVar(null);
 
     const onResize = (window) => () => {
         try {
             canvasWidth(window.innerWidth)
-            canvasHeight(canvas.current.clientHeight || canvas.current.offsetHeight);
+            canvasHeight(canvas.current.clientHeight);
             let m = { type: 'resize', canvasWidth: canvasWidth(), canvasHeight: canvasHeight() };
             throttle(() => worker.postMessage(m), 100)
         } catch (err) {
@@ -51,7 +51,7 @@ export default function Blobs () {
             SET INITIAL SCENE SIZE & RESIZE HANDLER
         */
         canvasWidth(window.innerWidth)
-        canvasHeight(canvas.current.clientHeight || canvas.current.offsetHeight);
+        canvasHeight(canvas.current.clientHeight);
         window.addEventListener('resize', onResize(window));
 
         /*
@@ -230,10 +230,10 @@ export default function Blobs () {
             console.log("ERROR EXTRACTING COORD: ", err)
         }
     }
-
+/*
     function gasDigest() {
         const {particles} = data.current;
-        let particle = svgcanvas.current.selectAll('circle.gas').data(particles.filter(x => x.type === 'gas'));
+        let particle = canvas.current.selectAll('circle.gas').data(particles.filter(x => x.type === 'gas'));
 
         particle.exit().remove();
         particle
@@ -246,7 +246,7 @@ export default function Blobs () {
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
     }
-
+*/
     /* *********************************************
         THROTTLE (for resize handler)
     ********************************************* */
@@ -260,7 +260,7 @@ export default function Blobs () {
     }
 
     return (<>
-        <style jsx>{`
+        {null /* <style jsx>{`
             .gooey {
                 filter:url("#gooey")
             }
@@ -272,7 +272,7 @@ export default function Blobs () {
             .invis {
                 opacity: 0;
             }
-        `}</style>
+        `}</style> */}
         <svg id={`canvas-${sceneKey}`} ref={canvas} className={`canvas${kill ? ' invis' : ''}`}>
             <defs>
                 <filter id="gooey">

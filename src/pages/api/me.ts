@@ -1,4 +1,4 @@
-import auth0 from '@dolly/utils/integrations/auth/auth0';
+import auth0 from '../../utils/integrations/auth/auth0';
 
 export default async function me(req, res) {
   try {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import auth0 from '@dolly/utils/integrations/auth/auth0';
-import { fetchUser } from '@dolly/utils/integrations/auth/user';
+import auth0 from '../utils/integrations/auth/auth0';
+import { fetchUser } from '../utils/integrations/auth/user';
 
 const Profile = ({ user }) => (<>
     <h1>Profile</h1>

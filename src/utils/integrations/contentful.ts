@@ -1,11 +1,10 @@
 import { gql } from 'apollo-boost'
+import contentful from 'contentful';
 
-module.exports = {
-    public: contentfulUtilities(),
-    private: __contentfulUtilities(),
-}
-  
-const contentful = require("contentful")
+export const contentfulUtils = {
+  public: contentfulUtilities(),
+  private: __contentfulUtilities(),
+};  
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE_ID,

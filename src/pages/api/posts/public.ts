@@ -1,4 +1,4 @@
-import { initializeApollo } from "@dolly/utils/apolloClient"
+import { initializeApollo } from "../../../utils/apolloClient"
 import { POST_QUERY, GATED_POST_QUERY } from './_queries'
 
 export async function getPost (slug:string): Promise<any> {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react'
-import { useUser } from '@dolly/utils/integrations/auth/user';
+import { useUser } from '../../utils/integrations/auth/user';
 import Header from './Header'
 
 
@@ -84,7 +84,7 @@ export default function Menu () {
             </ul>
         </nav>
 
-        <style jsx global>{`
+        {null /* <style jsx global>{`
             .color-bars {
                 position: absolute;
                 height: 100%;
@@ -168,7 +168,6 @@ export default function Menu () {
                 margin-left:-60px;
             }
 
-            /* clearfix */
             #navMenu ul::after {
                 content: '';
                 clear: both;
@@ -202,6 +201,7 @@ export default function Menu () {
                 fill: none;
                 stroke-width: 9px;
             }
-        `}</style>
+        `}</style> */}
+
     </>)
 }

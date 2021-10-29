@@ -1,4 +1,4 @@
-const { getArticles } = require('@dolly/utils/integrations/contentful').public;
+const { getArticles } = require('../../../utils/integrations/contentful').public;
 
 type IQueryParams = {
   skip: bigint,

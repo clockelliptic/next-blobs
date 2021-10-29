@@ -3,7 +3,7 @@ import useBlob from './useBlob'
 export default function Blob ({}) {
     useBlob("#interactive-blob-canvas", ".canvas-container")
     return (<>
-        <style jsx>{`
+        {null /* <style jsx>{`
             canvas {
                 width: 100%;
                 height: 100%;
@@ -12,7 +12,7 @@ export default function Blob ({}) {
                 width: 100%;
                 height: 100%;
             }
-        `}</style>
+        `}</style> */}
         <div className="canvas-container">
             <canvas id="interactive-blob-canvas" />
         </div>
